@@ -1,6 +1,11 @@
+DROP DATABASE IF EXISTS chat;
 CREATE DATABASE chat;
 
 USE chat;
+
+
+
+
 -- ---
 -- Globals
 -- ---
@@ -14,10 +19,10 @@ USE chat;
 -- ---
 
 DROP TABLE IF EXISTS `users`;
-		
+    
 CREATE TABLE `users` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` CHAR NULL DEFAULT NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
   `age` INTEGER NULL DEFAULT NULL,
   `location` INTEGER NULL DEFAULT NULL,
   `fav_food` INTEGER NULL DEFAULT NULL,
@@ -31,10 +36,10 @@ CREATE TABLE `users` (
 -- ---
 
 DROP TABLE IF EXISTS `messages`;
-		
+    
 CREATE TABLE `messages` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `room` INTEGER NULL DEFAULT NULL,
+  `room` INTEGER NULL DEFAULT NULL,ß
   `user` INTEGER NULL DEFAULT NULL,
   `text` VARCHAR(500) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -46,7 +51,7 @@ CREATE TABLE `messages` (
 -- ---
 
 DROP TABLE IF EXISTS `rooms`;
-		
+    
 CREATE TABLE `rooms` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `name` CHAR(45) NULL DEFAULT NULL,
@@ -57,6 +62,8 @@ CREATE TABLE `rooms` (
 -- Foreign Keys 
 -- ---
 
+ALTER TABLE `messages` ADD FOREIGN KEY (room) REFERENCES `rooms` (`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (user) REFERENCES `users` (`id`);
 
 -- ---
 -- Table Properties
@@ -77,13 +84,4 @@ CREATE TABLE `rooms` (
 -- INSERT INTO `rooms` (`id`,`name`) VALUES
 -- ('','');
 
-
-/* Create other tables and define schemas for them here! */
-
-
-
-
-/*  Execute this file from the command line by typing:
- *    mysql -u root < server/schema.sql
- *  to create the database and the tables.*/
 
