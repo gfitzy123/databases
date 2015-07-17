@@ -1,8 +1,9 @@
 var db = require('../db');
+var db = require('../db/index')
 
-
-
-
+console.log('models: index.js: IMPORTED db...', db.toString())
+db.connect()
+db.query('show databases;')
 
 module.exports = {
 var _ = require('lodash');
